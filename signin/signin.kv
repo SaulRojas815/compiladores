@@ -1,0 +1,85 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<SigninWindow>:
+	orientation: 'vertical'
+	# La orientación del layout principal es vertical, lo que colocará los widgets en una disposición vertical
+	canvas.before:
+		Color:
+			rgba: hex('#B27ECE')
+		Rectangle:
+			size: self.size
+			pos: self.pos
+	BoxLayout:
+		size_hint_y: .05
+		# Este BoxLayout se utiliza para reservar un espacio en la parte superior de la ventana
+
+	BoxLayout:
+		canvas.before:
+			Color:
+				rgba: hex('#F2F2F2') #color de fondo
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		size_hint_y: .9
+		# Este BoxLayout contiene los elementos de la ventana de inicio de sesión y tiene un tamaño del 90% de la altura de la ventana
+
+		Label:
+			size_hint_x: .3
+			# Se agrega un espacio vacío a la izquierda para mantener la alineación
+
+		BoxLayout:
+			size_hint_x: .4
+			orientation: 'vertical'
+			# Este BoxLayout contiene los elementos principales del formulario de inicio de sesión
+
+			Label: 
+				size_hint_y: .15
+				text: 'Bienvenido'
+				color: (0,0,0,1)
+				# Etiqueta de bienvenida con texto negro
+
+			Label:
+				id: signin_notificacion
+				size_hint_y: .15
+				color: (1, .2, .2, 1)
+				# Etiqueta para mostrar notificaciones, inicialmente con color rojo claro
+
+			TextInput:
+				id: username
+				size_hint_y: .06
+				hint_text: 'Nombre de Usuario'
+				multiline: False
+				write_tab: False
+				on_text_validate: root.verificar_usuario(self.text, password.text)
+				# Entrada de texto para el nombre de usuario con validación en la tecla Enter
+
+			TextInput:
+				id: password
+				size_hint_y: .06
+				hint_text: 'Contraseña'
+				multiline: False
+				write_tab: False
+				password: True
+				on_text_validate: root.verificar_usuario(username.text, self.text)
+				 # Entrada de texto para la contraseña con validación en la tecla Enter
+
+			Button:
+				size_hint_y: .06
+				background_normal: ''
+				background_color: hex('#393939')
+				text: 'Ingresar'
+				on_release: root.verificar_usuario(username.text, password.text)
+				# Botón para iniciar sesión, con función de llamada en su lanzamiento
+
+			Label:
+				size_hint_y: .4
+				# Se agrega un espacio vacío en la parte inferior para mantener la alineación
+
+		Label:
+			size_hint_x: .3
+			# Se agrega un espacio vacío a la derecha para mantener la alineación
+
+	BoxLayout:
+		size_hint_y: .05
+		 # Este BoxLayout se utiliza para reservar un espacio en la parte inferior de la ventana
+

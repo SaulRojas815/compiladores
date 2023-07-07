@@ -1,0 +1,12 @@
+<MainWindow>:
+	ScreenManager: #Este es un widget de Kivy que administra múltiples pantallas.
+		id: scrn_mngr_main #Se asigna un identificador al ScreenManager para poder referenciarlo en el código.
+		Screen: # Representa una pantalla individual en la interfaz.
+			id: scrn_signin
+			name: 'scrn_signin' # Nombre de la primera pantalla: 'scrn_signin'
+		Screen:
+			id: scrn_ventas
+			name: 'scrn_ventas' # Nombre de la segunda pantalla: 'scrn_ventas'
+		Screen:
+			id: scrn_admin
+			name: 'scrn_admin' # Nombre de la tercera pantalla: 'scrn_admin'
